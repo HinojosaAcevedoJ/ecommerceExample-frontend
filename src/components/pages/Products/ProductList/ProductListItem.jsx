@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
 import addCartIcon from '@icon/linea-ecommerce/icons/cart-plus.svg'
 import ProductItemPropType from './productItemPropType'
 import { useCart } from '../../../context/cartContextProvider'
 
 export default function ProductListItem({ item }) {
   const { addItem } = useCart()
+  const navigate = useNavigate()
   return (
     <section className="mx-5 my-4">
       <div key={item._id} className="bg-slate-100 text-slate-800 rounded overflow-hidden shadow-lg">
@@ -20,7 +22,7 @@ export default function ProductListItem({ item }) {
           <button type="button" className="bg-teal-500 text-center py-2 px-4 w-full hover:bg-teal-400 transition" onClick={() => addItem(item, 1)}>
             <img className="flex-1 h-5 w-5" src={addCartIcon} alt="add-to-cart" />
           </button>
-          <button type="button" className="bg-slate-300 text-center py-2 px-4 w-full hover:bg-slate-200 transition" onClick={() => { console.log(item) }}>Detalles</button>
+          <button type="button" className="bg-slate-300 text-center py-2 px-4 w-full hover:bg-slate-200 transition" onClick={() => { navigate(`/product/${item._id}`) }}>Detalles</button>
         </div>
       </div>
     </section>

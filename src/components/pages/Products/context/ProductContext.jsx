@@ -13,17 +13,22 @@ import getProductService from '../../../../services/productService'
 
 const ProductContext = createContext({
   productList: [],
+  categoryList: [],
   updatingProduct: {},
   isUpdating: false,
   handleUpdateProduct: () => {},
   handleCancelUpdate: () => {},
   handleSelectProductForUpdate: () => {},
   handleCreateProduct: () => {},
-  handleRemoveProduct: () => {}
+  handleRemoveProduct: () => {},
+  fetchByCategory: () => {},
+  getAllCategories: () => {}
 })
 
 export function ProductContextProvider({ children }) {
   const [productList, setProductList] = useState([])
+
+  const [categoryList, setCategoryList] = useState([])
 
   const [updatingProduct, setUpdatingProduct] = useState({})
 
@@ -36,6 +41,20 @@ export function ProductContextProvider({ children }) {
   }, [productService])
 
   useEffect(() => { fetchAll() }, [fetchAll])
+
+  const fetchByCategory = useCallback(category => {
+    productService.getByCategory(category).then(data => {
+      setCategoryList(data)
+    })
+  }, [productService])
+
+  const getAllCategories = useCallback(() => {
+    productService.getCategories().then(data => {
+      setCategoryList(data)
+    })
+  }, [productService])
+
+  useEffect(() => { getAllCategories() }, [getAllCategories])
 
   const handleCreateProduct = useCallback(async product => {
     try {
@@ -78,21 +97,27 @@ export function ProductContextProvider({ children }) {
 
   const contextValues = useMemo(() => ({
     productList,
+    categoryList,
     updatingProduct,
     handleCreateProduct,
     isUpdating: !isEmpty(updatingProduct),
     handleSelectProductForUpdate,
     handleCancelUpdate,
     handleUpdateProduct,
-    handleRemoveProduct
+    handleRemoveProduct,
+    fetchByCategory,
+    getAllCategories
   }), [
     productList,
+    categoryList,
     updatingProduct,
     handleCreateProduct,
     handleSelectProductForUpdate,
     handleCancelUpdate,
     handleUpdateProduct,
-    handleRemoveProduct
+    handleRemoveProduct,
+    fetchByCategory,
+    getAllCategories
   ])
 
   return (

@@ -15,12 +15,12 @@ export default function Cart() {
   } = useCart()
   if (isEmpty(cart)) return <p className="text-center"> Your cart is empty </p>
   return (
-    <section className="mx-5 my-4">
+    <section className="mx-5 my-4 w-max">
       <p className="text-center">Cart ({cart.length})</p>
 
-      <div className="grid grid-cols-1">
+      <div className="grid grid-cols-1 gap-4">
         {cart.map(item => (
-          <div key={item._id} className="bg-slate-100 text-slate-800 rounded overflow-hidden shadow-lg flex justify-between">
+          <div key={item._id} className="bg-slate-100 text-slate-800 rounded shadow-lg flex justify-between">
             <img src={item.image} alt={item.productName} className="object-contain h-12 w-24" />
             {item.quantity} x {item.productName} ${item.price * item.quantity} &nbsp;
             <button

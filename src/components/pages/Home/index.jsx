@@ -1,11 +1,14 @@
+import { ToastContainer } from 'react-toastify'
 import Products from '../Products'
-import Navbar from '../../Navbar'
+import DashboardLayout from '../../../layout'
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <Products />
+      <DashboardLayout>
+        <Products />
+      </DashboardLayout>
+      <ToastContainer />
     </>
   )
 }
