@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 
 import { useProducts } from '../context/ProductContext'
 import Button from '../../../common/Button'
-import { useCart } from '../../../context/cartContextProvider'
+import { useCart } from '../../../context/CartContextProvider'
 
 export default function ProductDetail() {
   const { productList } = useProducts()

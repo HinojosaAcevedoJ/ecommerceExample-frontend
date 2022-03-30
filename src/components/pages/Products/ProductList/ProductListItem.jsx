@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import addCartIcon from '@icon/linea-ecommerce/icons/cart-plus.svg'
 import ProductItemPropType from './productItemPropType'
-import { useCart } from '../../../context/cartContextProvider'
+import { useCart } from '../../../context/CartContextProvider'
 
 export default function ProductListItem({ item }) {
   const { addItem } = useCart()

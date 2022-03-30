@@ -6,7 +6,6 @@ export default function CategoryPageItem() {
   const { productList } = useProducts()
   const { category } = useParams()
   const products = productList.filter(item => item.category === category)
-  console.log(products)
   return (
     <section className="bg-gray-800">
       <h1 className="text-2xl font-bold mb-3 flex justify-center text-gray-50">{category}</h1>

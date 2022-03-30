@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import cartMinus from '@icon/linea-ecommerce/icons/cart-minus.svg'
 import cartPlus from '@icon/linea-ecommerce/icons/cart-plus.svg'
 import cartRemove from '@icon/linea-ecommerce/icons/cart-remove.svg'
-import { useCart } from '../../context/cartContextProvider'
+import { useCart } from '../../context/CartContextProvider'
+import { useInvoice } from '../../context/InvoiceContextProvider'
 import Button from '../Button'
 
 export default function Cart() {
@@ -13,6 +14,11 @@ export default function Cart() {
     totalPrice,
     cart
   } = useCart()
+  const { handleCreateInvoice } = useInvoice()
+  const itemsIds = cart.map(item => item._id)
+  const itemsQuantity = cart.map(item => item.quantity)
+  const itemPrice = cart.map(item => item.price)
+  const itemName = cart.map(item => item.productName)
   if (isEmpty(cart)) return <p className="text-center"> Your cart is empty </p>
   return (
     <section className="mx-5 my-4 w-max">
@@ -39,7 +45,7 @@ export default function Cart() {
       </div>
       <p className="text-center text-bold">Total Price: ${totalPrice(cart)}</p>
       <div className="grid grid-cols-2 justify-items-start">
-        <Button className="h-12 w-24">Pay now</Button>
+        <Button className="h-12 w-24" onClick={() => handleCreateInvoice(itemsIds, itemName, itemsQuantity, itemPrice, totalPrice(cart))}>Pay now</Button>
         <Link to="/">
           <Button>
             Back

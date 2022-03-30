@@ -14,6 +14,8 @@ import SideBar from './layout/SideBar'
 import DashboardLayout from './layout'
 import ProductDetail from './components/pages/Products/ProductDetail'
 import CategoryPage from './components/pages/Categories/CategoryPage'
+import Invoice from './components/pages/Invoice/InvoiceDetails'
+import InvoiceMenu from './components/pages/Invoice'
 
 export default function Router() {
   return (
@@ -30,6 +32,8 @@ export default function Router() {
         <Route exact path="/dashboard" element={<DashboardLayout />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/category/:category" element={<CategoryPage />} />
+        <Route path="/facturas/:id" element={<Invoice />} />
+        <Route exact path="/facturas" element={<InvoiceMenu />} />
       </Routes>
     </BrowserRouter>
   )

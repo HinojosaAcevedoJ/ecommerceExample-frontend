@@ -9,6 +9,8 @@ import PropTypes from 'prop-types'
 import { isEmpty } from 'ramda'
 
 const CartContext = createContext({
+  cart: [],
+  invoiceList: [],
   addItem: () => {},
   removeItem: () => {},
   handleUpdateQuantity: () => {},
@@ -52,16 +54,6 @@ export default function CartContextProvider({ children }) {
     }))
   }, [removeItem])
 
-  /** const checkCart = useCallback(() => {
-    if (cart.find(x => x.quantity === 0)) {
-      cart.map(x => (removeItem(x.id)))
-    }
-  }, [removeItem, cart])
-
-  useEffect(() => {
-    checkCart()
-  }, [checkCart]) */
-
   const totalPrice = useCallback(items => {
     const totalCost = items.reduce((total, item) => total + item.quantity * item.price, 0)
     return totalCost
@@ -72,7 +64,7 @@ export default function CartContextProvider({ children }) {
     addItem,
     removeItem,
     handleUpdateQuantity,
-    totalPrice
+    totalPrice,
   }), [
     cart,
     addItem,

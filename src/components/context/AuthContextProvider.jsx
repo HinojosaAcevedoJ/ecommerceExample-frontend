@@ -62,8 +62,10 @@ export function AuthContextProvider({ children }) {
 
   useEffect(() => {
     const tokenFromStorage = storage.getItem(TOKEN_KEY)
+    const permissionFromStorage = storage.getItem(PERMISSION_LEVEL)
     if (tokenFromStorage) {
       setToken(tokenFromStorage)
+      setPermissionLvl(permissionFromStorage)
     }
   }, [])
 

@@ -32,6 +32,9 @@ export default function SideBar() {
               ))}
             </SubMenu>
             <MenuItem>
+              {isAuth && <Link to="/facturas">Facturas</Link>}
+            </MenuItem>
+            <MenuItem>
               {permissionLvl === 'superadmin' && <Link to="/productadmin">Administrar productos</Link>}
             </MenuItem>
           </Menu>
