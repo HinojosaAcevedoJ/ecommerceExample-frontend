@@ -3,7 +3,6 @@ import { useProducts } from '../context/ProductContext'
 
 export default function ProductList() {
   const { productList } = useProducts()
-  console.log(productList)
   return (
     <section className="bg-gray-800">
       <h1 className="text-2xl font-bold mb-3 flex justify-center text-gray-50">Todos los productos</h1>
