@@ -5,7 +5,8 @@ import InvoiceDetailsItem from './InvoiceDetailsItem'
 export default function Invoice() {
   const { invoiceList } = useInvoice()
   const { id } = useParams()
-  const invoice = invoiceList.find(async item => await item._id === id)
+  const invoice = invoiceList.find(item => item._id === id)
+  console.log(invoice)
   const invoiceDetails = invoice.cartItems.map((item, index) => ({
     itemId: item,
     itemName: invoice.cartItemsName[index],

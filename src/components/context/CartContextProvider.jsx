@@ -46,7 +46,7 @@ export default function CartContextProvider({ children }) {
       if (cartItem._id === item) {
         const quantity = cartItem.quantity + value
         if (quantity === 0) {
-          removeItem(item)
+          return removeItem(item)
         }
         return { ...cartItem, quantity }
       }
